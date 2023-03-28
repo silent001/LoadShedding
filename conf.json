@@ -1,0 +1,11 @@
+{
+  "group": "8",
+  "updated_at": "1680015602",
+  "expires_at": "1680016202",
+  "tolerance": "1 hour",
+  "offset": "5 min",
+  "update_interval": "10 min",
+  "cust_command": "shutdown",
+  "status": "2",
+  "next_cmd_run": "1679932500"
+}
