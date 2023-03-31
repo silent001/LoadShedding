@@ -7,6 +7,7 @@ day=$(date +%d)
 status=0
 uptime=$(awk '{print $1}' /proc/uptime)
 
+
 ## Define functions
 conf_exists()
 {
@@ -183,10 +184,14 @@ if [ "$last_status" != "$status" ]; then
   print_status
 fi
 
+#If time now within tolerance of midnight change day
+if [ "$timestamp" -ge "$(date -d "tomorrow 00 - $tolerance" +%s)" ]; then
+  day=$(date -d "tomorrow" +%d)
+fi
+
 #Go through each stage till current stage
 x=1
 stage=$(( status-1 ))
-day=$(date +%-d)
 time_slots=()
 while [ "$x" -lt "$status" ]; do
   query=$(jq -r --arg group ${group} --arg stage ${x} --arg day ${day} '.[$group] | .[$stage] | .[$day][0]' data.json)
