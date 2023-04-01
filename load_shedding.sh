@@ -3,7 +3,7 @@
 ## Define Variables
 conf_file="conf.json"
 timestamp=$(date +%s)
-day=$(date +%d)
+day=$(date +%-d)
 status=0
 uptime=$(awk '{print $1}' /proc/uptime)
 
@@ -186,7 +186,7 @@ fi
 
 #If time now within tolerance of midnight change day
 if [ "$timestamp" -ge "$(date -d "tomorrow 00 - $tolerance" +%s)" ]; then
-  day=$(date -d "tomorrow" +%d)
+  day=$(date -d "tomorrow" +%-d)
 fi
 
 #Go through each stage till current stage
